@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Solar System</title>
+  <script src="script/aframe.min.js"></script>
+</head>
+
+<body>
+<a-scene background="color: #000011">
+  
+  <!-- ASSETS -->
+  <a-assets>
+    <img id="stars" src="texture/2k_stars_milky_way.jpg">
+    <img id="sunTex" src="texture/2k_sun.jpg">
+    <img id="mercuryTex" src="texture/2k_mercury.jpg">
+    <img id="venusTex" src="texture/2k_venus_surface.jpg">
+    <img id="earthTex" src="texture/2k_earth_daymap.jpg">
+    <img id="moonTex" src="texture/2k_moon.jpg">
+    <img id="marsTex" src="texture/2k_mars.jpg">
+    <img id="jupiterTex" src="texture/2k_jupiter.jpg">
+    <img id="saturnTex" src="texture/2k_saturn.jpg">
+    <img id="saturnRingTex" src="texture/2k_saturn_ring_alpha.png">
+    <img id="uranusTex" src="texture/2k_uranus.jpg">
+    <img id="neptuneTex" src="texture/2k_neptune.jpg">
+  </a-assets>
+
+  <!-- BRIGHT STARFIELD BACKGROUND -->
+  <a-sky src="#stars" radius="200"></a-sky>
+
+  <!-- CAMERA WITH CLEAR VIEW -->
+  <a-entity camera position="0 15 50" look-controls wasd-controls="acceleration: 30">
+    <a-cursor></a-cursor>
+  </a-entity>
+
+  <!-- ENHANCED LIGHTING -->
+  <a-light type="ambient" color="#445" intensity="0.5"></a-light>
+  <a-light type="point" intensity="2" distance="500" position="0 0 0" color="#FFD700"></a-light>
+
+  <!-- SUN - CENTER -->
+  <a-sphere id="sun" src="#sunTex" radius="4" position="0 0 0"
+            material="shader: flat; emissive: #FFD700; emissiveIntensity: 0.5"
+            animation="property: rotation; to: 0 360 0; dur: 30000; loop: true">
+    <a-text value="SUN" align="center" position="0 6 0" width="10" color="#FFD700" scale="2 2 2"></a-text>
+  </a-sphere>
+
+  <!-- VISIBLE ORBITAL LINES -->
+  <!-- Mercury Orbit -->
+  <a-ring rotation="90 0 0" position="0 0.1 0"
+          radius-inner="6.9" radius-outer="7.1"
+          material="color: #FF9800; opacity: 0.8; side: double; transparent: false">
+  </a-ring>
+
+  <!-- Venus Orbit -->
+  <a-ring rotation="90 0 0" position="0 0.1 0"
+          radius-inner="9.9" radius-outer="10.1"
+          material="color: #FFB74D; opacity: 0.8; side: double; transparent: false">
+  </a-ring>
+
+  <!-- Earth Orbit -->
+  <a-ring rotation="90 0 0" position="0 0.1 0"
+          radius-inner="12.9" radius-outer="13.1"
+          material="color: #4FC3F7; opacity: 0.8; side: double; transparent: false">
+  </a-ring>
+
+  <!-- Mars Orbit -->
+  <a-ring rotation="90 0 0" position="0 0.1 0"
+          radius-inner="15.9" radius-outer="16.1"
+          material="color: #FF5722; opacity: 0.8; side: double; transparent: false">
+  </a-ring>
+
+  <!-- Jupiter Orbit -->
+  <a-ring rotation="90 0 0" position="0 0.1 0"
+          radius-inner="21.9" radius-outer="22.1"
+          material="color: #FF9800; opacity: 0.8; side: double; transparent: false">
+  </a-ring>
+
+  <!-- Saturn Orbit -->
+  <a-ring rotation="90 0 0" position="0 0.1 0"
+          radius-inner="28.9" radius-outer="29.1"
+          material="color: #FFD54F; opacity: 0.8; side: double; transparent: false">
+  </a-ring>
+
+  <!-- Uranus Orbit -->
+  <a-ring rotation="90 0 0" position="0 0.1 0"
+          radius-inner="34.9" radius-outer="35.1"
+          material="color: #80DEEA; opacity: 0.8; side: double; transparent: false">
+  </a-ring>
+
+  <!-- Neptune Orbit -->
+  <a-ring rotation="90 0 0" position="0 0.1 0"
+          radius-inner="38.5" radius-outer="39"
+          material="color: #2962FF; opacity: 0.8; side: double; transparent: false">
+  </a-ring>
+
+  <!-- PLANETS WITH LABELS -->
+
+  <!-- MERCURY -->
+  <a-entity animation="property: rotation; to: 0 360 0; dur: 8800; loop: true; easing: linear">
+    <a-entity position="7 0 0">
+      <a-sphere id="mercury" src="#mercuryTex" radius="0.8"
+                material="roughness: 0.7; metalness: 0.3"
+                animation="property: rotation; to: 0 360 0; dur: 5800; loop: true">
+      </a-sphere>
+      <!-- LABEL -->
+      <a-text value="MERCURY" 
+              align="center" 
+              position="0 2 0" 
+              width="8"
+              color="#FF9800"
+              scale="2 2 2"
+              billboard="true">
+      </a-text>
+    </a-entity>
+  </a-entity>
+
+  <!-- VENUS -->
+  <a-entity animation="property: rotation; to: 0 360 0; dur: 22464; loop: true; easing: linear">
+    <a-entity position="10 0 0">
+      <a-sphere id="venus" src="#venusTex" radius="1.2"
+                material="roughness: 0.6"
+                animation="property: rotation; to: 0 -360 0; dur: 8000; loop: true">
+        <!-- Atmospheric glow -->
+        <a-sphere radius="1.3" material="color: #FFCC80; opacity: 0.3; transparent: true"></a-sphere>
+      </a-sphere>
+      <!-- LABEL -->
+      <a-text value="VENUS" 
+              align="center" 
+              position="0 2.5 0" 
+              width="8"
+              color="#FFB74D"
+              scale="2 2 2"
+              billboard="true">
+      </a-text>
+    </a-entity>
+  </a-entity>
+
+  <!-- EARTH -->
+  <a-entity animation="property: rotation; to: 0 360 0; dur: 36525; loop: true; easing: linear">
+    <a-entity position="13 0 0">
+      <a-sphere id="earth" src="#earthTex" radius="1.4"
+                animation="property: rotation; to: 0 360 0; dur: 8640; loop: true">
+      </a-sphere>
+      <!-- LABEL -->
+      <a-text value="EARTH" 
+              align="center" 
+              position="0 2.8 0" 
+              width="8"
+              color="#4FC3F7"
+              scale="2 2 2"
+              billboard="true">
+      </a-text>
+      
+      <!-- Moon orbit -->
+      <a-entity animation="property: rotation; to: 0 360 0; dur: 2736; loop: true">
+        <a-sphere id="moon" src="#moonTex" radius="0.35" position="2.2 0 0"
+                  animation="property: rotation; to: 0 360 0; dur: 655; loop: true">
+          <!-- MOON LABEL -->
+          <a-text value="MOON" 
+                  align="center" 
+                  position="0 0.8 0" 
+                  width="4"
+                  color="#CCCCCC"
+                  scale="1.5 1.5 1.5"
+                  billboard="true">
+          </a-text>
+        </a-sphere>
+      </a-entity>
+    </a-entity>
+  </a-entity>
+
+  <!-- MARS -->
+  <a-entity animation="property: rotation; to: 0 360 0; dur: 68698; loop: true; easing: linear">
+    <a-entity position="16 0 0">
+      <a-sphere id="mars" src="#marsTex" radius="1.0"
+                material="roughness: 0.8"
+                animation="property: rotation; to: 0 360 0; dur: 886; loop: true">
+      </a-sphere>
+      <!-- LABEL -->
+      <a-text value="MARS" 
+              align="center" 
+              position="0 2.2 0" 
+              width="8"
+              color="#FF5722"
+              scale="2 2 2"
+              billboard="true">
+      </a-text>
+    </a-entity>
+  </a-entity>
+
+  <!-- ASTEROID BELT VISIBLE -->
+  <a-ring rotation="20 0 0" position="0 0.2 0"
+          radius-inner="18" radius-outer="20"
+          material="color: #795548; opacity: 0.3; side: double; transparent: true">
+  </a-ring>
+
+  <!-- JUPITER -->
+  <a-entity animation="property: rotation; to: 0 360 0; dur: 433200; loop: true; easing: linear">
+    <a-entity position="22 0 0">
+      <a-sphere id="jupiter" src="#jupiterTex" radius="3.0"
+                animation="property: rotation; to: 0 360 0; dur: 357; loop: true">
+      </a-sphere>
+      <!-- LABEL -->
+      <a-text value="JUPITER" 
+              align="center" 
+              position="0 5 0" 
+              width="10"
+              color="#FF9800"
+              scale="2.5 2.5 2.5"
+              billboard="true">
+      </a-text>
+    </a-entity>
+  </a-entity>
+
+  <!-- SATURN WITH ENHANCED RINGS -->
+  <a-entity id="saturnSystem" animation="property: rotation; to: 0 360 0; dur: 1075900; loop: true; easing: linear">
+    <a-entity position="29 0 0" rotation="-26 0 0">
+      
+      <!-- SATURN'S MAIN RINGS -->
+      <a-ring id="saturnRing" 
+              src="#saturnRingTex"
+              radius-inner="2.2"
+              radius-outer="3.4"
+              rotation="0 0 0"
+              material="transparent: true; opacity: 0.9; side: double; shader: flat"
+              animation="property: rotation; to: 0 360 0; dur: 50000; loop: true; easing: linear">
+      </a-ring>
+      
+      <!-- SATURN PLANET -->
+      <a-sphere id="saturn" src="#saturnTex" radius="2.5"
+                material="roughness: 0.7; metalness: 0.2"
+                animation="property: rotation; to: 0 360 0; dur: 386; loop: true; easing: linear">
+      </a-sphere>
+      
+      <!-- LABEL -->
+      <a-text value="SATURN" 
+              align="center" 
+              position="0 6.5 0" 
+              width="10"
+              color="#FFD54F"
+              scale="2.5 2.5 2.5"
+              billboard="true">
+      </a-text>
+      
+    </a-entity>
+  </a-entity>
+
+  <!-- URANUS WITH LABEL - FIXED -->
+  <a-entity animation="property: rotation; to: 0 360 0; dur: 3068500; loop: true; easing: linear">
+    <a-entity position="35 0 0" rotation="98 0 0">
+      <!-- Uranus rings -->
+      <a-ring radius-inner="1.8" radius-outer="2.5"
+              rotation="0 0 0"
+              material="color: #80DEEA; opacity: 0.4; side: double; transparent: true">
+      </a-ring>
+      
+      <a-sphere id="uranus" src="#uranusTex" radius="2.0"
+                animation="property: rotation; to: 0 360 0; dur: 620; loop: true">
+      </a-sphere>
+      
+      <!-- URANUS LABEL - MOVED OUTSIDE THE ROTATED ENTITY -->
+    </a-entity>
+    
+    <!-- URANUS LABEL POSITIONED AT 35 0 0 (NOT ROTATED WITH THE PLANET) -->
+    <a-text value="URANUS" 
+            align="center" 
+            position="35 4 0" 
+            width="10"
+            color="#80DEEA"
+            scale="2.5 2.5 2.5"
+            billboard="true">
+    </a-text>
+  </a-entity>
+
+  <!-- NEPTUNE -->
+  <a-entity animation="property: rotation; to: 0 360 0; dur: 6019000; loop: true; easing: linear">
+    <a-entity position="39 0 0">
+      <a-sphere id="neptune" src="#neptuneTex" radius="2.0"
+                animation="property: rotation; to: 0 360 0; dur: 540; loop: true">
+      </a-sphere>
+      <!-- LABEL -->
+      <a-text value="NEPTUNE" 
+              align="center" 
+              position="0 4 0" 
+              width="10"
+              color="#2962FF"
+              scale="2.5 2.5 2.5"
+              billboard="true">
+      </a-text>
+    </a-entity>
+  </a-entity>
+
+  <!-- GRID FOR REFERENCE -->
+  <a-grid position="0 -2 0" 
+          cell-width="1" 
+          cell-height="1" 
+          width="80" 
+          height="80"
+          color="#333"
+          opacity="0.3">
+  </a-grid>
+
+</a-scene>
+
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: #000;
+  }
+  
+  /* Loading message */
+  #loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #4fc3f7;
+    font-size: 20px;
+    opacity: 0.8;
+    z-index: 1000;
+  }
+</style>
+
+<div id="loading">Loading Solar System...</div>
+
+<script>
+  document.querySelector('a-scene').addEventListener('loaded', function() {
+    document.getElementById('loading').style.display = 'none';
+    
+    // Debug: Check if Uranus label exists
+    const uranusLabel = document.querySelector('a-text[value="URANUS"]');
+    if (uranusLabel) {
+      console.log('Uranus label found at position:', uranusLabel.getAttribute('position'));
+    } else {
+      console.log('Uranus label not found!');
+    }
+  });
+</script>
+
+</body>
+</html>
